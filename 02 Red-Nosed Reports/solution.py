@@ -1,6 +1,6 @@
 #%% Load data
 # Read code file and store as list of values
-with open("input.txt") as file:
+with open("input02.txt") as file:
     data = file.read().splitlines()
 
 #%% Part 01
@@ -28,7 +28,7 @@ for row in range(len(data)):
         elif (n < len(row_of_ints)-1):
             current_step = check_step(number, row_of_ints[n+1])
 
-            if (current_step ==0) or (previous_step == 0) or (previous_step != current_step):
+            if (current_step == 0) or (previous_step == 0) or (previous_step != current_step):
                 safe_reports[row] = 0
                 break
         
@@ -36,3 +36,31 @@ total_safe_reports = sum(safe_reports)
 print(f'Total safe reports: {total_safe_reports}')
 
 #%% Part 02
+individual_steps = [None] * len(data)
+
+# Check each row
+for row in range(len(data)):
+    row_of_ints = list(map(int, data[row].split()))
+    safe_reports[row] = 1
+    row_error_flag = False
+    
+    # Check each list of numbers per row
+    for (n,number) in enumerate(row_of_ints):
+        
+        if (n == 0):
+            previous_step = check_step(number, row_of_ints[n+1])
+
+        elif (n < len(row_of_ints)-1):
+            current_step = check_step(number, row_of_ints[n+1])
+
+            if (current_step == 0) or (previous_step == 0) or (previous_step != current_step):
+                if (row_error_flag == False): 
+                    row_error_flag = True
+                else:
+                    safe_reports[row] = 0
+                    break
+        
+total_safe_reports = sum(safe_reports)
+print(f'Total safe reports: {total_safe_reports}')
+
+# %%
