@@ -14,3 +14,9 @@ total_distance = np.sum(distance_data)
 print(f"Total distance: {total_distance}")
 
 #%% Part 02
+similarity_score = 0
+for i in range(data.shape[0]):
+    number_mask = np.array(data[:,1] == data[i,0], dtype=int)
+    similarity_score += data[i,0] * np.sum(number_mask)
+
+print(f"Similarity score {similarity_score}")
