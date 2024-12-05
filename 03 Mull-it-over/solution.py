@@ -39,9 +39,7 @@ def remove_dont_segments(row):
             if (sub == 0) and (segment != segments[0]):                
                 continue
 
-            print(f"Evaluated Subsegment: {subsegment}")
             muls = find_muls(subsegment)
-            print(f"Muls: {muls}")
             result += sum_mul_valid_muls(muls)
     return result
        
