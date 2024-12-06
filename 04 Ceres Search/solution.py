@@ -8,21 +8,11 @@ def is_valid_check(data, row, col):
     valid_col = (col >= 0 and col < len(data[0]))
     return valid_col and valid_row
 
-def count_occurrences(data, word):
+def count_occurrences(data, word, directions):
     data_rows = len(data)
     data_cols = len(data[0])
 
     word_len = len(word)
-    directions = [
-        (0, 1),  # right
-        (1, 0),  # down
-        (0, -1), # left
-        (-1, 0), # up
-        (1, 1),  # down-right
-        (1, -1), # down-left
-        (-1, 1), # up-right
-        (-1, -1) # up-left
-    ]
 
     # Look for word from each cell
     count = 0
@@ -53,7 +43,25 @@ def count_occurrences(data, word):
     return count
 
 #%% Part 01
-test_horizontal = ["..XMAS..SAMX"]
-total_xmas = count_occurrences(data, "XMAS")
+directions = directions = [
+    (0, 1),  # right
+    (1, 0),  # down
+    (0, -1), # left
+    (-1, 0), # up
+    (1, 1),  # down-right
+    (1, -1), # down-left
+    (-1, 1), # up-right
+    (-1, -1) # up-left
+    ]
+total_xmas = count_occurrences(data, "XMAS", directions)
 print(f"Part 01 total: {total_xmas}")
-# %%
+
+#%% Part 02
+directions = directions = [
+    (1, 1),  # down-right
+    (1, -1), # down-left
+    (-1, 1), # up-right
+    (-1, -1) # up-left
+    ]
+total_x_mas = count_occurrences(data, "MAS", directions)
+print(f"Part 02 total: {total_x_mas}")
